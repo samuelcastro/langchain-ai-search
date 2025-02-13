@@ -33,6 +33,22 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "ChatOpenAI",
         "importPath": "langchain_openai",
         "description": "langchain_openai",
@@ -46,6 +62,22 @@
         "description": "langchain_openai",
         "isExtraImport": true,
         "detail": "langchain_openai",
+        "documentation": {}
+    },
+    {
+        "label": "ChatOpenAI",
+        "importPath": "langchain_openai",
+        "description": "langchain_openai",
+        "isExtraImport": true,
+        "detail": "langchain_openai",
+        "documentation": {}
+    },
+    {
+        "label": "PromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
         "documentation": {}
     },
     {
@@ -73,6 +105,30 @@
         "documentation": {}
     },
     {
+        "label": "Tool",
+        "importPath": "langchain_core.tools",
+        "description": "langchain_core.tools",
+        "isExtraImport": true,
+        "detail": "langchain_core.tools",
+        "documentation": {}
+    },
+    {
+        "label": "create_react_agent",
+        "importPath": "langchain.agents",
+        "description": "langchain.agents",
+        "isExtraImport": true,
+        "detail": "langchain.agents",
+        "documentation": {}
+    },
+    {
+        "label": "AgentExecutor",
+        "importPath": "langchain.agents",
+        "description": "langchain.agents",
+        "isExtraImport": true,
+        "detail": "langchain.agents",
+        "documentation": {}
+    },
+    {
         "label": "create_react_agent",
         "importPath": "langchain.agents",
         "description": "langchain.agents",
@@ -97,6 +153,22 @@
         "documentation": {}
     },
     {
+        "label": "hub",
+        "importPath": "langchain",
+        "description": "langchain",
+        "isExtraImport": true,
+        "detail": "langchain",
+        "documentation": {}
+    },
+    {
+        "label": "get_profile_url_tavily",
+        "importPath": "tools.tools",
+        "description": "tools.tools",
+        "isExtraImport": true,
+        "detail": "tools.tools",
+        "documentation": {}
+    },
+    {
         "label": "get_profile_url_tavily",
         "importPath": "tools.tools",
         "description": "tools.tools",
@@ -111,6 +183,15 @@
         "importPath": "requests",
         "description": "requests",
         "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "tweepy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tweepy",
+        "description": "tweepy",
+        "detail": "tweepy",
         "documentation": {}
     },
     {
@@ -147,10 +228,26 @@
     },
     {
         "label": "lookup",
-        "importPath": "agents.linkedin_lookup_agent",
-        "description": "agents.linkedin_lookup_agent",
+        "importPath": "agents.twitter_lookup_agent",
+        "description": "agents.twitter_lookup_agent",
         "isExtraImport": true,
-        "detail": "agents.linkedin_lookup_agent",
+        "detail": "agents.twitter_lookup_agent",
+        "documentation": {}
+    },
+    {
+        "label": "lookup",
+        "importPath": "agents.twitter_lookup_agent",
+        "description": "agents.twitter_lookup_agent",
+        "isExtraImport": true,
+        "detail": "agents.twitter_lookup_agent",
+        "documentation": {}
+    },
+    {
+        "label": "scrape_user_tweets",
+        "importPath": "third_parties.twitter",
+        "description": "third_parties.twitter",
+        "isExtraImport": true,
+        "detail": "third_parties.twitter",
         "documentation": {}
     },
     {
@@ -163,12 +260,39 @@
         "documentation": {}
     },
     {
+        "label": "lookup",
+        "kind": 2,
+        "importPath": "agents.twitter_lookup_agent",
+        "description": "agents.twitter_lookup_agent",
+        "peekOfCode": "def lookup(name: str) -> str:\n    llm = ChatOpenAI(\n        temperature=0,  # 0 because we don't want any creative answers, we just need the results from the search\n        model=\"gpt-4o-mini\",\n    )\n    template = \"\"\"\n        Given the name {name_of_person} I want you to find a link to their Twitter profile page, \n        and extract from it their username. \n        Your Final answer, you should only return the username.\n    \"\"\"",
+        "detail": "agents.twitter_lookup_agent",
+        "documentation": {}
+    },
+    {
         "label": "scrape_linkedin_profile",
         "kind": 2,
         "importPath": "third_parties.linkedin",
         "description": "third_parties.linkedin",
         "peekOfCode": "def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):\n    \"\"\"scrape information from LinkedIn profiles,\n    Manually scrape the information from the LinkedIn profile\n    \"\"\"\n    if mock:\n        linkedin_profile_url = \"https://gist.githubusercontent.com/samuelcastro/afafea0032854ab53d647edc05683435/raw/3bcb3cf3cfeb52baa0f7e3e2e3ecae47a2790b55/sam-silva-data.json\"\n        response = requests.get(linkedin_profile_url, timeout=10)\n    else:\n        api_endpoint = \"https://api.scrapin.io/enrichment/profile\"\n        params = {",
         "detail": "third_parties.linkedin",
+        "documentation": {}
+    },
+    {
+        "label": "scrape_user_tweets",
+        "kind": 2,
+        "importPath": "third_parties.twitter",
+        "description": "third_parties.twitter",
+        "peekOfCode": "def scrape_user_tweets(username: str, num_tweets=5, mock: bool = False):\n    \"\"\"\n    Scrapes a Twitter user's original tweets (i.e., not retweets or replies) and returns them as a list of dictionaries.\n    Each dictionary has three fields: \"time_posted\" (relative to now), \"text\", and \"url\".\n    \"\"\"\n    tweet_list = []\n    if mock:\n        TWITTER_GIST = \"https://gist.githubusercontent.com/samuelcastro/1fb4e0e33ecd7d8bbd8bca2ad7e0bcd1/raw/83423729b49b392dce33fcadb431b55d49eb286d/twitter.json\"\n        tweets = requests.get(TWITTER_GIST, timeout=5).json()\n    else:",
+        "detail": "third_parties.twitter",
+        "documentation": {}
+    },
+    {
+        "label": "twitter_client",
+        "kind": 5,
+        "importPath": "third_parties.twitter",
+        "description": "third_parties.twitter",
+        "peekOfCode": "twitter_client = tweepy.Client(\n    bearer_token=os.getenv(\"TWITTER_BEARER_TOKEN\"),\n    consumer_key=os.getenv(\"TWITTER_CONSUMER_KEY\"),\n    consumer_secret=os.getenv(\"TWITTER_CONSUMER_SECRET\"),\n    access_token=os.getenv(\"TWITTER_ACCESS_TOKEN\"),\n    access_token_secret=os.getenv(\"TWITTER_ACCESS_TOKEN_SECRET\"),\n)\ndef scrape_user_tweets(username: str, num_tweets=5, mock: bool = False):\n    \"\"\"\n    Scrapes a Twitter user's original tweets (i.e., not retweets or replies) and returns them as a list of dictionaries.",
+        "detail": "third_parties.twitter",
         "documentation": {}
     },
     {
@@ -185,7 +309,7 @@
         "kind": 2,
         "importPath": "ice_breaker",
         "description": "ice_breaker",
-        "peekOfCode": "def ice_breaker_with(name: str) -> str:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url)\n    summary_template = \"\"\"\n        Given the information {information} about a person from I want you to create:\n        1. a short summary\n        2. two interesting facts about them\n    \"\"\"\n    summary_prompt = PromptTemplate(\n        input_variables=[\"information\"], template=summary_template",
+        "peekOfCode": "def ice_breaker_with(name: str) -> str:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url)\n    twitter_url = twitter_lookup_agent(name=name)\n    tweets = scrape_user_tweets(username=twitter_url, mock=True)\n    summary_template = \"\"\"\n        Given the information about a person from LinkedIn {information},\n         and twitter posts {twitter_posts} I want you to create:\n        1. a short summary\n        2. two interesting facts about them",
         "detail": "ice_breaker",
         "documentation": {}
     }
