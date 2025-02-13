@@ -130,19 +130,27 @@
         "documentation": {}
     },
     {
-        "label": "ChatOllama",
-        "importPath": "langchain_ollama",
-        "description": "langchain_ollama",
-        "isExtraImport": true,
-        "detail": "langchain_ollama",
-        "documentation": {}
-    },
-    {
         "label": "scrape_linkedin_profile",
         "importPath": "third_parties.linkedin",
         "description": "third_parties.linkedin",
         "isExtraImport": true,
         "detail": "third_parties.linkedin",
+        "documentation": {}
+    },
+    {
+        "label": "lookup",
+        "importPath": "agents.linkedin_lookup_agent",
+        "description": "agents.linkedin_lookup_agent",
+        "isExtraImport": true,
+        "detail": "agents.linkedin_lookup_agent",
+        "documentation": {}
+    },
+    {
+        "label": "lookup",
+        "importPath": "agents.linkedin_lookup_agent",
+        "description": "agents.linkedin_lookup_agent",
+        "isExtraImport": true,
+        "detail": "agents.linkedin_lookup_agent",
         "documentation": {}
     },
     {
@@ -173,11 +181,11 @@
         "documentation": {}
     },
     {
-        "label": "api_key",
-        "kind": 5,
+        "label": "ice_breaker_with",
+        "kind": 2,
         "importPath": "ice_breaker",
         "description": "ice_breaker",
-        "peekOfCode": "api_key = os.getenv(\"OPENAI_API_KEY\")\nif not api_key:\n    raise ValueError(\n        \"OPENAI_API_KEY not found in environment variables. Please check your .env file.\"\n    )\n# This script prints a simple message when run directly.\n# The special variable __name__ is set to \"__main__\" when the script is executed directly,\n# as opposed to being imported into another module.\nif __name__ == \"__main__\":\n    print(\"Hello, LangChain test!\")",
+        "peekOfCode": "def ice_breaker_with(name: str) -> str:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url)\n    summary_template = \"\"\"\n        Given the information {information} about a person from I want you to create:\n        1. a short summary\n        2. two interesting facts about them\n    \"\"\"\n    summary_prompt = PromptTemplate(\n        input_variables=[\"information\"], template=summary_template",
         "detail": "ice_breaker",
         "documentation": {}
     }

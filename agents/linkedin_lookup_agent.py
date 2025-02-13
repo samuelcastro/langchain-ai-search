@@ -1,4 +1,3 @@
-
 import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
@@ -39,9 +38,9 @@ def lookup(name: str) -> str:
 
     tools_for_agent = [
         Tool(
-            name="Crawl Google 4 linkedin profile", # name of the tool
-            func=get_profile_url_tavily, # This is the function that will be used by the agent
-            description="useful when you need to get the LinkedIn URL of a person", # description of the tool, this will help the agent to understand the tool
+            name="Crawl Google 4 linkedin profile",  # name of the tool
+            func=get_profile_url_tavily,  # This is the function that will be used by the agent
+            description="useful when you need to get the LinkedIn URL of a person",  # description of the tool, this will help the agent to understand the tool
         )
     ]
 
@@ -60,8 +59,8 @@ def lookup(name: str) -> str:
     linkedin_profile_url = result["output"]
 
     return linkedin_profile_url
-    
-    
+
+
 if __name__ == "__main__":
     linkedin_profile_url = lookup(name="Samuel Silva")
     print(linkedin_profile_url)
