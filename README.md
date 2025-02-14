@@ -28,4 +28,4 @@ This project is a simple LangChain project generator that helps you learn about 
 
 ## Usage
 
-The main functionality is accessed through the `ice_breaker_with()` function:
+The main functionality is accessed through the `search_agent()` function:
