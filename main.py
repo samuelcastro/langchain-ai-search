@@ -16,7 +16,6 @@ from third_parties.twitter import scrape_user_tweets
 
 load_dotenv(override=True)
 
-
 def search_agent(name: str) -> Tuple[Summary, str]:
     linkedin_url = linkedin_lookup_agent(name=name)
     linkedin_data = scrape_linkedin_profile(
@@ -52,15 +51,13 @@ def search_agent(name: str) -> Tuple[Summary, str]:
     # chain = summary_prompt | llm | StrOutputParser()
     chain = summary_prompt | llm | summary_parser
 
-    linkedin_data = scrape_linkedin_profile(
-        linkedin_profile_url="https://www.linkedin.com/in/samuelcasilva/", mock=True
-    )
-
     summary: Summary = chain.invoke(
         input={"information": linkedin_data, "twitter_posts": tweets}
     )
 
-    return summary, linkedin_data.get("profile_pic_url")
+    res = summary, linkedin_data.get("photoUrl")
+
+    return res
 
 
 if __name__ == "__main__":

@@ -377,7 +377,7 @@
         "kind": 2,
         "importPath": "third_parties.linkedin",
         "description": "third_parties.linkedin",
-        "peekOfCode": "def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):\n    \"\"\"scrape information from LinkedIn profiles,\n    Manually scrape the information from the LinkedIn profile\n    \"\"\"\n    if mock:\n        linkedin_profile_url = \"https://gist.githubusercontent.com/samuelcastro/afafea0032854ab53d647edc05683435/raw/3bcb3cf3cfeb52baa0f7e3e2e3ecae47a2790b55/sam-silva-data.json\"\n        response = requests.get(linkedin_profile_url, timeout=10)\n        data = response.json()\n    else:\n        api_endpoint = \"https://api.scrapin.io/enrichment/profile\"",
+        "peekOfCode": "def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):\n    \"\"\"scrape information from LinkedIn profiles,\n    Manually scrape the information from the LinkedIn profile\n    \"\"\"\n    if mock:\n        linkedin_profile_url = \"https://gist.githubusercontent.com/samuelcastro/afafea0032854ab53d647edc05683435/raw/3bcb3cf3cfeb52baa0f7e3e2e3ecae47a2790b55/sam-silva-data.json\"\n        response = requests.get(linkedin_profile_url, timeout=10)\n    else:\n        api_endpoint = \"https://api.scrapin.io/enrichment/profile\"\n        params = {",
         "detail": "third_parties.linkedin",
         "documentation": {}
     },
