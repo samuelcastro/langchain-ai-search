@@ -211,6 +211,14 @@
         "documentation": {}
     },
     {
+        "label": "PydanticOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
+        "isExtraImport": true,
+        "detail": "langchain_core.output_parsers",
+        "documentation": {}
+    },
+    {
         "label": "scrape_linkedin_profile",
         "importPath": "third_parties.linkedin",
         "description": "third_parties.linkedin",
@@ -248,6 +256,54 @@
         "description": "third_parties.twitter",
         "isExtraImport": true,
         "detail": "third_parties.twitter",
+        "documentation": {}
+    },
+    {
+        "label": "summary_parser",
+        "importPath": "output_parsers",
+        "description": "output_parsers",
+        "isExtraImport": true,
+        "detail": "output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
         "documentation": {}
     },
     {
@@ -309,8 +365,26 @@
         "kind": 2,
         "importPath": "ice_breaker",
         "description": "ice_breaker",
-        "peekOfCode": "def ice_breaker_with(name: str) -> str:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url)\n    twitter_url = twitter_lookup_agent(name=name)\n    tweets = scrape_user_tweets(username=twitter_url, mock=True)\n    summary_template = \"\"\"\n        Given the information about a person from LinkedIn {information},\n         and their latest twitter posts {twitter_posts} I want you to create:\n        1. a short summary\n        2. two interesting facts about them",
+        "peekOfCode": "def ice_breaker_with(name: str) -> str:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url, mock=True)\n    twitter_url = twitter_lookup_agent(name=name)\n    tweets = scrape_user_tweets(username=twitter_url, mock=True)\n    summary_template = \"\"\"\n        Given the information about a person from LinkedIn {information},\n         and their latest twitter posts {twitter_posts} I want you to create:\n        1. a short summary\n        2. two interesting facts about them",
         "detail": "ice_breaker",
+        "documentation": {}
+    },
+    {
+        "label": "Summary",
+        "kind": 6,
+        "importPath": "output_parsers",
+        "description": "output_parsers",
+        "peekOfCode": "class Summary(BaseModel):\n    summary: str = Field(description=\"summary\")\n    facts: List[str] = Field(description=\"interesting facts about them\")\n    def to_dict(self) -> Dict[str, Any]:\n        return {\"summary\": self.summary, \"facts\": self.facts}\nsummary_parser = PydanticOutputParser(pydantic_object=Summary)",
+        "detail": "output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "summary_parser",
+        "kind": 5,
+        "importPath": "output_parsers",
+        "description": "output_parsers",
+        "peekOfCode": "summary_parser = PydanticOutputParser(pydantic_object=Summary)",
+        "detail": "output_parsers",
         "documentation": {}
     }
 ]
