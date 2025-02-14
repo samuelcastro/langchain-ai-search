@@ -61,6 +61,6 @@ def search_agent(name: str) -> Tuple[Summary, str]:
 
 
 if __name__ == "__main__":
-    print("Ice Breaker Enter")
+    print("AI Search Agent")
 
     search_agent(name="Harrison Chase")
