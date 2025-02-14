@@ -35,9 +35,11 @@ def ice_breaker_with(name: str) -> str:
 
     summary_template = """
         Given the information about a person from LinkedIn {information},
-         and twitter posts {twitter_posts} I want you to create:
+         and their latest twitter posts {twitter_posts} I want you to create:
         1. a short summary
         2. two interesting facts about them
+        
+        Use both the information from LinkedIn and the twitter posts.
     """
 
     summary_prompt = PromptTemplate(
@@ -62,4 +64,4 @@ def ice_breaker_with(name: str) -> str:
 if __name__ == "__main__":
     print("Ice Breaker Enter")
 
-    ice_breaker_with(name="Samuel Silva Evolua")
+    ice_breaker_with(name="Harrison Chase")

@@ -273,7 +273,7 @@
         "kind": 2,
         "importPath": "third_parties.linkedin",
         "description": "third_parties.linkedin",
-        "peekOfCode": "def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):\n    \"\"\"scrape information from LinkedIn profiles,\n    Manually scrape the information from the LinkedIn profile\n    \"\"\"\n    if mock:\n        linkedin_profile_url = \"https://gist.githubusercontent.com/samuelcastro/afafea0032854ab53d647edc05683435/raw/3bcb3cf3cfeb52baa0f7e3e2e3ecae47a2790b55/sam-silva-data.json\"\n        response = requests.get(linkedin_profile_url, timeout=10)\n    else:\n        api_endpoint = \"https://api.scrapin.io/enrichment/profile\"\n        params = {",
+        "peekOfCode": "def scrape_linkedin_profile(linkedin_profile_url: str, mock: bool = False):\n    \"\"\"scrape information from LinkedIn profiles,\n    Manually scrape the information from the LinkedIn profile\n    \"\"\"\n    if mock:\n        linkedin_profile_url = \"https://gist.githubusercontent.com/samuelcastro/afafea0032854ab53d647edc05683435/raw/3bcb3cf3cfeb52baa0f7e3e2e3ecae47a2790b55/sam-silva-data.json\"\n        response = requests.get(linkedin_profile_url, timeout=10)\n        data = response.json()\n    else:\n        api_endpoint = \"https://api.scrapin.io/enrichment/profile\"",
         "detail": "third_parties.linkedin",
         "documentation": {}
     },
@@ -309,7 +309,7 @@
         "kind": 2,
         "importPath": "ice_breaker",
         "description": "ice_breaker",
-        "peekOfCode": "def ice_breaker_with(name: str) -> str:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url)\n    twitter_url = twitter_lookup_agent(name=name)\n    tweets = scrape_user_tweets(username=twitter_url, mock=True)\n    summary_template = \"\"\"\n        Given the information about a person from LinkedIn {information},\n         and twitter posts {twitter_posts} I want you to create:\n        1. a short summary\n        2. two interesting facts about them",
+        "peekOfCode": "def ice_breaker_with(name: str) -> str:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url)\n    twitter_url = twitter_lookup_agent(name=name)\n    tweets = scrape_user_tweets(username=twitter_url, mock=True)\n    summary_template = \"\"\"\n        Given the information about a person from LinkedIn {information},\n         and their latest twitter posts {twitter_posts} I want you to create:\n        1. a short summary\n        2. two interesting facts about them",
         "detail": "ice_breaker",
         "documentation": {}
     }
