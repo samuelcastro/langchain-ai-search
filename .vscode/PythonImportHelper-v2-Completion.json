@@ -49,6 +49,14 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "ChatOpenAI",
         "importPath": "langchain_openai",
         "description": "langchain_openai",
@@ -203,19 +211,91 @@
         "documentation": {}
     },
     {
-        "label": "StrOutputParser",
-        "importPath": "langchain_core.output_parsers",
-        "description": "langchain_core.output_parsers",
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
         "isExtraImport": true,
-        "detail": "langchain_core.output_parsers",
+        "detail": "flask",
         "documentation": {}
     },
     {
-        "label": "PydanticOutputParser",
-        "importPath": "langchain_core.output_parsers",
-        "description": "langchain_core.output_parsers",
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
         "isExtraImport": true,
-        "detail": "langchain_core.output_parsers",
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "search_agent",
+        "importPath": "main",
+        "description": "main",
+        "isExtraImport": true,
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Summary",
+        "importPath": "output_parsers",
+        "description": "output_parsers",
+        "isExtraImport": true,
+        "detail": "output_parsers",
+        "documentation": {}
+    },
+    {
+        "label": "summary_parser",
+        "importPath": "output_parsers",
+        "description": "output_parsers",
+        "isExtraImport": true,
+        "detail": "output_parsers",
         "documentation": {}
     },
     {
@@ -251,35 +331,11 @@
         "documentation": {}
     },
     {
-        "label": "summary_parser",
-        "importPath": "output_parsers",
-        "description": "output_parsers",
+        "label": "PydanticOutputParser",
+        "importPath": "langchain_core.output_parsers",
+        "description": "langchain_core.output_parsers",
         "isExtraImport": true,
-        "detail": "output_parsers",
-        "documentation": {}
-    },
-    {
-        "label": "List",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Any",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
+        "detail": "langchain_core.output_parsers",
         "documentation": {}
     },
     {
@@ -353,11 +409,38 @@
         "documentation": {}
     },
     {
-        "label": "ice_breaker_with",
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    return render_template('index.html')\n@app.route('/process', methods=['POST'])\ndef process():\n    data = request.json\n    name = data.get('name')\n    summary_and_facts, profile_pic_url = search_agent(name)\n    return jsonify({'summary_and_facts': summary_and_facts.to_dict(), 'picture_url': profile_pic_url})\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', debug=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "process",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def process():\n    data = request.json\n    name = data.get('name')\n    summary_and_facts, profile_pic_url = search_agent(name)\n    return jsonify({'summary_and_facts': summary_and_facts.to_dict(), 'picture_url': profile_pic_url})\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', debug=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n@app.route('/')\ndef index():\n    return render_template('index.html')\n@app.route('/process', methods=['POST'])\ndef process():\n    data = request.json\n    name = data.get('name')\n    summary_and_facts, profile_pic_url = search_agent(name)\n    return jsonify({'summary_and_facts': summary_and_facts.to_dict(), 'picture_url': profile_pic_url})",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "search_agent",
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def ice_breaker_with(name: str) -> str:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url, mock=True)\n    twitter_url = twitter_lookup_agent(name=name)\n    tweets = scrape_user_tweets(username=twitter_url, mock=True)\n    summary_template = \"\"\"\n        Given the information about a person from LinkedIn {information},\n         and their latest twitter posts {twitter_posts} I want you to create:\n        1. a short summary\n        2. two interesting facts about them",
+        "peekOfCode": "def search_agent(name: str) -> Tuple[Summary, str]:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(\n        linkedin_profile_url=linkedin_url, mock=True\n    )\n    twitter_url = twitter_lookup_agent(name=name)\n    tweets = scrape_user_tweets(username=twitter_url, mock=True)\n    summary_template = \"\"\"\n        Given the information about a person from LinkedIn {information},\n         and their latest twitter posts {twitter_posts} I want you to create:",
         "detail": "main",
         "documentation": {}
     },

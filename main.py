@@ -1,35 +1,27 @@
-import os
+from dotenv import load_dotenv
 
-# Output parsers
-from langchain_core.output_parsers import StrOutputParser
-
+from typing import Tuple
 # Prompt Templates: Prompt Templates in LangChain are a way to create reusable prompts for different chains.
 from langchain_core.prompts import PromptTemplate
 
 # Chain Models: Chain Models in LangChain are a way to chain together multiple components to form a larger chain.
 from langchain_openai import ChatOpenAI
 
+from output_parsers import Summary, summary_parser
 from third_parties.linkedin import scrape_linkedin_profile
 from agents.linkedin_lookup_agent import lookup as linkedin_lookup_agent
 from agents.twitter_lookup_agent import lookup as twitter_lookup_agent
-
-from dotenv import load_dotenv
 from third_parties.twitter import scrape_user_tweets
-from output_parsers import summary_parser
+
 
 load_dotenv(override=True)
 
-# api_key = os.getenv("OPENAI_API_KEY")
 
-# if not api_key:
-#     raise ValueError(
-#         "OPENAI_API_KEY not found in environment variables. Please check your .env file."
-#     )
-
-
-def ice_breaker_with(name: str) -> str:
+def search_agent(name: str) -> Tuple[Summary, str]:
     linkedin_url = linkedin_lookup_agent(name=name)
-    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url, mock=True)
+    linkedin_data = scrape_linkedin_profile(
+        linkedin_profile_url=linkedin_url, mock=True
+    )
 
     twitter_url = twitter_lookup_agent(name=name)
     tweets = scrape_user_tweets(username=twitter_url, mock=True)
@@ -48,7 +40,9 @@ def ice_breaker_with(name: str) -> str:
     summary_prompt = PromptTemplate(
         input_variables=["information", "twitter_posts"],
         template=summary_template,
-        partial_variables={"format_instructions": summary_parser.get_format_instructions()},
+        partial_variables={
+            "format_instructions": summary_parser.get_format_instructions()
+        },
     )
 
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
@@ -62,12 +56,14 @@ def ice_breaker_with(name: str) -> str:
         linkedin_profile_url="https://www.linkedin.com/in/samuelcasilva/", mock=True
     )
 
-    res = chain.invoke(input={"information": linkedin_data, "twitter_posts": tweets})
+    summary: Summary = chain.invoke(
+        input={"information": linkedin_data, "twitter_posts": tweets}
+    )
 
-    print(res)
+    return summary, linkedin_data.get("profile_pic_url")
 
 
 if __name__ == "__main__":
     print("Ice Breaker Enter")
 
-    ice_breaker_with(name="Harrison Chase")
+    search_agent(name="Harrison Chase")
