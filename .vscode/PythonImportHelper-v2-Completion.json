@@ -243,14 +243,6 @@
         "documentation": {}
     },
     {
-        "label": "lookup",
-        "importPath": "agents.twitter_lookup_agent",
-        "description": "agents.twitter_lookup_agent",
-        "isExtraImport": true,
-        "detail": "agents.twitter_lookup_agent",
-        "documentation": {}
-    },
-    {
         "label": "scrape_user_tweets",
         "importPath": "third_parties.twitter",
         "description": "third_parties.twitter",
@@ -363,10 +355,10 @@
     {
         "label": "ice_breaker_with",
         "kind": 2,
-        "importPath": "ice_breaker",
-        "description": "ice_breaker",
+        "importPath": "main",
+        "description": "main",
         "peekOfCode": "def ice_breaker_with(name: str) -> str:\n    linkedin_url = linkedin_lookup_agent(name=name)\n    linkedin_data = scrape_linkedin_profile(linkedin_profile_url=linkedin_url, mock=True)\n    twitter_url = twitter_lookup_agent(name=name)\n    tweets = scrape_user_tweets(username=twitter_url, mock=True)\n    summary_template = \"\"\"\n        Given the information about a person from LinkedIn {information},\n         and their latest twitter posts {twitter_posts} I want you to create:\n        1. a short summary\n        2. two interesting facts about them",
-        "detail": "ice_breaker",
+        "detail": "main",
         "documentation": {}
     },
     {
